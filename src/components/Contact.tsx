@@ -9,10 +9,30 @@ export default function Contact() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>(
+    'idle'
+  );
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Later: integrate with email service / backend API
+    setStatus('submitting');
+
+    try {
+      // TODO: Integrate with your backend or email service (EmailJS, API route, etc.)
+      // Example:
+      // await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) });
+
+      // Simulate async work
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+    } finally {
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   const handleChange = (
@@ -46,7 +66,7 @@ export default function Contact() {
           Let&apos;s build something amazing together
         </motion.p>
 
-        {/* Resume details */}
+        {/* Basic identity line */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,28 +77,24 @@ export default function Contact() {
           Musunuri Pradyumna Ravi Chandra · Andhra Pradesh, India
         </motion.p>
 
-        <motion.p
+        {/* Email icon instead of visible email text */}
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-gray-500 text-center text-sm mb-12"
+          className="flex items-center justify-center gap-3 mb-12"
         >
-          Email:{' '}
-          <a
+          <span className="text-gray-500 text-sm">Preferred contact:</span>
+          <motion.a
             href="mailto:mprc9125@gmail.com"
-            className="text-cyan-400 hover:underline"
+            className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-cyan-400/60 bg-black/40 text-cyan-300"
+            whileHover={{ scale: 1.1, y: -2, boxShadow: '0 0 16px rgba(0, 246, 255, 0.6)' }}
+            whileTap={{ scale: 0.95 }}
           >
-            mprc9125@gmail.com
-          </a>{' '}
-          · Phone:{' '}
-          <a
-            href="tel:+917013352782"
-            className="text-cyan-400 hover:underline"
-          >
-            +91 70133 52782
-          </a>
-        </motion.p>
+            <Mail className="w-4 h-4" />
+          </motion.a>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -138,15 +154,40 @@ export default function Contact() {
 
             <motion.button
               type="submit"
-              className="w-full px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium tracking-wide"
-              whileHover={{
-                scale: 1.02,
-                boxShadow: '0 0 30px rgba(0, 246, 255, 0.6)',
-              }}
-              whileTap={{ scale: 0.98 }}
+              disabled={status === 'submitting'}
+              className="w-full px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium tracking-wide disabled:opacity-60 disabled:cursor-not-allowed"
+              whileHover={
+                status === 'submitting'
+                  ? {}
+                  : {
+                      scale: 1.02,
+                      boxShadow: '0 0 30px rgba(0, 246, 255, 0.6)',
+                    }
+              }
+              whileTap={status === 'submitting' ? {} : { scale: 0.98 }}
             >
-              SEND MESSAGE
+              {status === 'submitting' ? 'SENDING...' : 'SEND MESSAGE'}
             </motion.button>
+
+            {status === 'success' && (
+              <motion.p
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-sm text-emerald-400 mt-3 text-center"
+              >
+                Message sent successfully! I&apos;ll get back to you soon.
+              </motion.p>
+            )}
+
+            {status === 'error' && (
+              <motion.p
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-sm text-red-400 mt-3 text-center"
+              >
+                Something went wrong. Please try again later.
+              </motion.p>
+            )}
           </form>
 
           <div className="mt-8 pt-8 border-t border-cyan-500/20">
@@ -157,10 +198,9 @@ export default function Contact() {
               {[
                 { icon: Mail, href: 'mailto:mprc9125@gmail.com' },
                 { icon: Github, href: 'https://github.com/pradyu25' },
-                // Replace the LinkedIn URL below with your actual profile link
                 {
                   icon: Linkedin,
-                  href: 'www.linkedin.com/in/m-pradyumna-ravi-chandra-5536752b6',
+                  href: 'https://www.linkedin.com/in/m-pradyumna-ravi-chandra-5536752b6',
                 },
               ].map((social, index) => (
                 <motion.a
