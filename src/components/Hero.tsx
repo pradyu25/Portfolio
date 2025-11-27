@@ -258,7 +258,7 @@ export default function Hero() {
             className="absolute w-44 h-44 rounded-full overflow-hidden border border-cyan-400/60 shadow-lg shadow-cyan-500/40 bg-black/60"
           >
             <img
-              src="src/ravi.png" // ensure this exists in /public
+              src="./ravi.png" // ensure this exists in /public
               alt="Musunuri Pradyumna Ravi Chandra"
               className="w-full h-full object-cover mix-blend-screen"
             />
