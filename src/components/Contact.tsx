@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Github, Linkedin } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Contact() {
@@ -12,9 +12,12 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+    // Later: integrate with email service / backend API
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -38,9 +41,43 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-gray-400 text-center mb-12"
+          className="text-gray-400 text-center mb-3"
         >
-          Let's build something amazing together
+          Let&apos;s build something amazing together
+        </motion.p>
+
+        {/* Resume details */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 }}
+          className="text-gray-500 text-center text-sm mb-1"
+        >
+          Musunuri Pradyumna Ravi Chandra · Andhra Pradesh, India
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-gray-500 text-center text-sm mb-12"
+        >
+          Email:{' '}
+          <a
+            href="mailto:mprc9125@gmail.com"
+            className="text-cyan-400 hover:underline"
+          >
+            mprc9125@gmail.com
+          </a>{' '}
+          · Phone:{' '}
+          <a
+            href="tel:+917013352782"
+            className="text-cyan-400 hover:underline"
+          >
+            +91 70133 52782
+          </a>
         </motion.p>
 
         <motion.div
@@ -82,7 +119,10 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm text-gray-300 mb-2">
+              <label
+                htmlFor="message"
+                className="block text-sm text-gray-300 mb-2"
+              >
                 Message
               </label>
               <textarea
@@ -110,13 +150,18 @@ export default function Contact() {
           </form>
 
           <div className="mt-8 pt-8 border-t border-cyan-500/20">
-            <p className="text-gray-400 text-sm text-center mb-4">Connect with me</p>
+            <p className="text-gray-400 text-sm text-center mb-4">
+              Connect with me
+            </p>
             <div className="flex justify-center gap-6">
               {[
-                { icon: Mail, href: 'mailto:contact@example.com' },
-                { icon: Github, href: 'https://github.com' },
-                { icon: Linkedin, href: 'https://linkedin.com' },
-                { icon: Twitter, href: 'https://twitter.com' },
+                { icon: Mail, href: 'mailto:mprc9125@gmail.com' },
+                { icon: Github, href: 'https://github.com/pradyu25' },
+                // Replace the LinkedIn URL below with your actual profile link
+                {
+                  icon: Linkedin,
+                  href: 'www.linkedin.com/in/m-pradyumna-ravi-chandra-5536752b6',
+                },
               ].map((social, index) => (
                 <motion.a
                   key={index}

@@ -3,40 +3,18 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Ransomware Detection System',
-    description: 'Deep learning model using CNNs and RNNs to detect and classify ransomware behavior patterns in real-time with 96% accuracy.',
-    tech: 'PyTorch • TensorFlow • Python • Docker',
-    link: '#',
+    title: 'Movie & Book Recommendation System (NLP + ML)',
+    description:
+      'Developed an intelligent recommendation engine using NLP and ML to suggest books and movies based on user preferences and historical activity. Implemented content-based and collaborative filtering for improved accuracy.',
+    tech: 'Python • NLP • Scikit-learn • Pandas • Collaborative Filtering',
+    link: 'https://github.com/pradyu25Movie-and-book-recommendation#', // replace with specific repo if you have it
   },
   {
-    title: 'Phishing Website Detector',
-    description: 'ML-powered browser extension that analyzes website characteristics and URL patterns to identify phishing attempts.',
-    tech: 'Scikit-learn • Flask • React • Chrome API',
-    link: '#',
-  },
-  {
-    title: 'Intelligent Recommendation Engine',
-    description: 'NLP-based system for movies and books using collaborative filtering and content-based approaches with sentiment analysis.',
-    tech: 'BERT • Transformers • FastAPI • PostgreSQL',
-    link: '#',
-  },
-  {
-    title: 'Email Spam Classifier',
-    description: 'High-performance spam detection system using ensemble methods and feature engineering with 98.5% precision.',
-    tech: 'Scikit-learn • NLTK • SpaCy • AWS Lambda',
-    link: '#',
-  },
-  {
-    title: 'Computer Vision Dashboard',
-    description: 'Real-time object detection and tracking system with custom YOLOv8 model trained on specialized dataset.',
-    tech: 'OpenCV • YOLOv8 • Flask • WebSockets',
-    link: '#',
-  },
-  {
-    title: 'AutoML Pipeline',
-    description: 'Automated machine learning framework that handles data preprocessing, model selection, and hyperparameter tuning.',
-    tech: 'AutoML • MLflow • Kubernetes • GCP',
-    link: '#',
+    title: 'Intrusion Detection System using ML',
+    description:
+      'Built a deep learning–based network intrusion detection model capable of identifying suspicious activities in real time. Designed a local host monitoring app to alert users on abnormal traffic or security breaches.',
+    tech: 'Deep Learning • Python • TensorFlow/PyTorch • Network Traffic Analysis',
+    link: 'https://github.com/pradyu25/Intrusion-detection-system', // replace with specific repo if you have it
   },
 ];
 
@@ -53,6 +31,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
+        {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,6 +41,7 @@ export default function Projects() {
           PROJECTS<span className="text-cyan-400">.</span>
         </motion.h2>
 
+        {/* Project Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <motion.div
@@ -83,15 +63,20 @@ export default function Projects() {
                 <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
                   {project.title}
                 </h3>
+
                 <p className="text-gray-400 text-sm leading-relaxed mb-4">
                   {project.description}
                 </p>
+
                 <p className="text-cyan-300/80 text-xs font-mono mb-4">
                   {project.tech}
                 </p>
               </div>
+
               <motion.a
                 href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 text-cyan-400 text-sm font-medium"
                 whileHover={{ x: 5 }}
               >
@@ -102,6 +87,30 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
+
+        {/* Button to GitHub profile for more projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center mt-12"
+        >
+          <motion.a
+            href="https://github.com/pradyu25?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{
+              scale: 1.05,
+              boxShadow: '0 0 25px rgba(0, 246, 255, 0.4)',
+            }}
+            whileTap={{ scale: 0.97 }}
+            className="px-6 py-3 bg-transparent border border-cyan-400 text-cyan-400 font-medium rounded-xl flex items-center gap-3 transition-all hover:bg-cyan-400 hover:text-black"
+          >
+            <Github className="w-5 h-5" />
+            View More Projects on GitHub
+            <ExternalLink className="w-3 h-3" />
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
