@@ -174,13 +174,6 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          {/* Profession smaller */}
-          <motion.p
-            variants={itemVariants}
-            className="text-2xl md:text-4xl font-semibold text-cyan-300/90 font-['Space_Grotesk'] tracking-wide"
-          >
-            AI & ML ENGINEER
-          </motion.p>
 
           {/* Location + Degree */}
           <motion.p
@@ -216,7 +209,7 @@ export default function Hero() {
             </motion.button>
 
             <motion.a
-              href="/Musunuri_Pradyumna_Ravi_Chandra_Resume.pdf"
+              href="src/lRESUMEin.pdf"
               download
               className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium tracking-wide"
               whileHover={{
@@ -265,7 +258,7 @@ export default function Hero() {
             className="absolute w-44 h-44 rounded-full overflow-hidden border border-cyan-400/60 shadow-lg shadow-cyan-500/40 bg-black/60"
           >
             <img
-              src="/profile.jpg" // ensure this exists in /public
+              src="src/ravi.png" // ensure this exists in /public
               alt="Musunuri Pradyumna Ravi Chandra"
               className="w-full h-full object-cover mix-blend-screen"
             />
