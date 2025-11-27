@@ -209,7 +209,7 @@ export default function Hero() {
             </motion.button>
 
             <motion.a
-              href="src/lRESUMEin.pdf"
+              href="./lRESUMEin.pdf"
               download
               className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium tracking-wide"
               whileHover={{
